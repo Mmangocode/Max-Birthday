@@ -1,0 +1,1111 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>Happy Birthday Max!</title>
+
+<style>
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff5f8;
+    color: #333;
+    text-align: center;
+    overflow-x: hidden;
+}
+
+section {
+    padding: 85px 20px;
+    position: relative;
+}
+
+.scrap-title {
+    font-weight: 700;
+    letter-spacing: 0.3px;
+    position: relative;
+    display: inline-block;
+}
+
+.scrap-title::after {
+    content: "";
+    position: absolute;
+    width: 70%;
+    height: 5px;
+    left: 15%;
+    bottom: -10px;
+    background: rgba(255,127,165,0.20);
+    transform: rotate(-2deg);
+    border-radius: 50%;
+}
+
+.hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero h1 {
+    font-size: 64px;
+    font-weight: 700;
+    margin: 0 0 15px 0;
+}
+
+.subtitle {
+    font-size: 22px;
+    margin-bottom: 35px;
+}
+
+.open-button {
+    border: none;
+    background: #ff7fa5;
+    color: white;
+    padding: 17px 34px;
+    border-radius: 40px;
+    font-size: 18px;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(255,127,165,0.25);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.open-button:hover {
+    transform: scale(1.07);
+    box-shadow: 0 12px 25px rgba(255,127,165,0.35);
+}
+
+.doodle {
+    position: absolute;
+    font-size: 30px;
+    opacity: 0.45;
+    pointer-events: none;
+}
+
+.doodle.one {
+    top: 15%;
+    left: 8%;
+    transform: rotate(-15deg);
+}
+
+.doodle.two {
+    top: 20%;
+    right: 9%;
+    transform: rotate(12deg);
+}
+
+.doodle.three {
+    bottom: 10%;
+    left: 12%;
+}
+
+.doodle.four {
+    bottom: 15%;
+    right: 10%;
+}
+
+.heart {
+    position: fixed;
+    bottom: -50px;
+    width: 22px;
+    height: 22px;
+    border-left: 2px solid #d98ca3;
+    border-bottom: 2px solid #d98ca3;
+    transform: rotate(-45deg);
+    pointer-events: none;
+    z-index: 999;
+    opacity: 0;
+    animation: floatHeart 5s ease-in forwards;
+}
+
+.heart::before,
+.heart::after {
+    content: "";
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    border: 2px solid #d98ca3;
+    border-radius: 50%;
+}
+
+.heart::before {
+    top: -12px;
+    left: -2px;
+    border-bottom: none;
+    border-right: none;
+}
+
+.heart::after {
+    top: -2px;
+    left: 10px;
+    border-bottom: none;
+    border-left: none;
+}
+
+@keyframes floatHeart {
+
+    0% {
+        transform:
+            translateY(0)
+            rotate(-45deg)
+            scale(0.7);
+
+        opacity: 0;
+    }
+
+    15% {
+        opacity: 0.65;
+    }
+
+    100% {
+        transform:
+            translateY(-110vh)
+            rotate(-35deg)
+            scale(1.2);
+
+        opacity: 0;
+    }
+}
+
+.letter-section {
+    min-height: 700px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.letter-section h2 {
+    font-size: 36px;
+    margin-bottom: 30px;
+}
+
+.envelope-wrapper {
+    width: 340px;
+    max-width: 90%;
+    margin: 20px auto;
+    cursor: pointer;
+    perspective: 1000px;
+}
+
+.envelope {
+    position: relative;
+    width: 100%;
+    height: 220px;
+    background: #f4b5c7;
+    border-radius: 6px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.14);
+}
+
+.envelope-front {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: 3;
+}
+
+.envelope-front::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+
+    border-left: 170px solid #f9c6d5;
+    border-right: 170px solid #f9c6d5;
+    border-top: 110px solid transparent;
+    border-bottom: 110px solid #f7bdcf;
+}
+
+.envelope-flap {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    background: #ec9fb6;
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+
+    transform-origin: top;
+    transition: transform 0.8s ease;
+    z-index: 5;
+}
+
+.letter-paper {
+    position: absolute;
+    width: 88%;
+    height: 190px;
+    left: 6%;
+    bottom: 10px;
+    background: #fffdf8;
+    border-radius: 6px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.10);
+    transition: transform 1s ease;
+    z-index: 2;
+}
+
+.envelope-wrapper.open .envelope-flap {
+    transform: rotateX(180deg);
+}
+
+.envelope-wrapper.open .letter-paper {
+    transform: translateY(-145px);
+}
+
+.letter-content {
+    max-width: 700px;
+
+    margin:
+        100px
+        auto
+        0;
+
+    background: #fffdf8;
+    padding: 45px;
+    border-radius: 5px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-size: 19px;
+    line-height: 1.9;
+    opacity: 0;
+
+    transform:
+        translateY(30px)
+        rotate(-1deg);
+
+    transition:
+        opacity 1s ease,
+        transform 1s ease;
+
+    position: relative;
+}
+
+.letter-content p {
+    white-space: pre-line;
+}
+
+.letter-content::before {
+    content: "♡";
+    position: absolute;
+    top: 14px;
+    right: 24px;
+    font-size: 28px;
+    opacity: 0.3;
+}
+
+.letter-content.show {
+    opacity: 1;
+
+    transform:
+        translateY(0)
+        rotate(-1deg);
+}
+
+.letter-content h3 {
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    font-size: 29px;
+    margin-top: 0;
+}
+
+.scrapbook-divider {
+    height: 85px;
+    position: relative;
+    overflow: hidden;
+    background: #fff5f8;
+}
+
+.scrapbook-divider::before {
+    content: "";
+    position: absolute;
+    width: 110%;
+    height: 120px;
+    left: -5%;
+    top: 25px;
+    background: #fffdf8;
+    transform: rotate(-2deg);
+    box-shadow: 0 -5px 12px rgba(0,0,0,0.04);
+}
+
+.scrapbook-divider.reverse::before {
+    transform: rotate(2deg);
+}
+
+.memories-section {
+    background: #fffdf8;
+    position: relative;
+}
+
+.memories-section h2 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.memories-subtitle {
+    font-size: 18px;
+    margin-bottom: 40px;
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 42px;
+    max-width: 1050px;
+    margin: 50px auto 0;
+    padding: 25px;
+}
+
+.polaroid {
+    background: white;
+
+    padding:
+        13px
+        13px
+        50px
+        13px;
+
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+    position: relative;
+    opacity: 1;
+
+    transition:
+        opacity 0.8s ease,
+        transform 0.8s ease,
+        box-shadow 0.35s ease;
+}
+
+.polaroid:nth-child(odd) {
+    transform: rotate(-3deg);
+}
+
+.polaroid:nth-child(even) {
+    transform: rotate(3deg);
+}
+
+.polaroid:nth-child(3n) {
+    transform: rotate(1deg);
+}
+
+.js-enabled .polaroid.reveal-photo {
+    opacity: 0;
+    transform: translateY(65px) rotate(-3deg);
+}
+
+.js-enabled .polaroid.reveal-photo:nth-child(even) {
+    transform: translateY(65px) rotate(3deg);
+}
+
+.js-enabled .polaroid.reveal-photo:nth-child(3n) {
+    transform: translateY(65px) rotate(1deg);
+}
+
+.js-enabled .polaroid.reveal-photo.visible {
+    opacity: 1;
+}
+
+.js-enabled .polaroid.reveal-photo.visible:nth-child(odd) {
+    transform: translateY(0) rotate(-3deg);
+}
+
+.js-enabled .polaroid.reveal-photo.visible:nth-child(even) {
+    transform: translateY(0) rotate(3deg);
+}
+
+.js-enabled .polaroid.reveal-photo.visible:nth-child(3n) {
+    transform: translateY(0) rotate(1deg);
+}
+
+.polaroid img {
+    width: 100%;
+    height: 360px;
+    object-fit: cover;
+    display: block;
+}
+
+.photo-caption {
+    margin: 14px 5px -25px;
+    font-size: 15px;
+    min-height: 22px;
+    color: #555;
+}
+
+.tape {
+    position: absolute;
+    width: 90px;
+    height: 28px;
+    top: -16px;
+    left: 50%;
+    transform: translateX(-50%) rotate(-2deg);
+    background: rgba(255,218,158,0.65);
+    z-index: 4;
+}
+
+.polaroid:nth-child(even) .tape {
+    transform: translateX(-50%) rotate(4deg);
+    background: rgba(255,190,206,0.55);
+}
+
+.polaroid:nth-child(3n) .tape {
+    transform: translateX(-50%) rotate(-4deg);
+    background: rgba(199,226,255,0.55);
+}
+
+.polaroid:hover {
+    transform: rotate(0deg) scale(1.05) !important;
+    z-index: 10;
+    box-shadow: 0 16px 35px rgba(0,0,0,0.20);
+}
+
+.video-section h2 {
+    font-size: 38px;
+}
+
+.video-container {
+    max-width: 800px;
+    margin: 35px auto;
+    padding: 0 15px;
+}
+
+.video-container iframe {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border: none;
+    border-radius: 22px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+}
+
+.final-section {
+    background: #fffdf8;
+    padding-bottom: 120px;
+    position: relative;
+}
+
+.final-section h2 {
+    font-size: 40px;
+}
+
+.final-message {
+    max-width: 700px;
+    margin: auto;
+    font-size: 21px;
+    line-height: 1.8;
+}
+
+.final-message p {
+    white-space: pre-line;
+}
+
+@media (max-width: 700px) {
+
+    .hero h1 {
+        font-size: 44px;
+    }
+
+    .photo-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .polaroid img {
+        height: 280px;
+    }
+}
+
+@media (max-width: 430px) {
+
+    .photo-grid {
+        grid-template-columns: 1fr;
+        max-width: 330px;
+    }
+
+    .polaroid img {
+        height: 410px;
+    }
+}
+
+</style>
+
+</head>
+
+<body>
+
+
+<div class="hero" id="top">
+
+    <span class="doodle one">✦</span>
+    <span class="doodle two">♡</span>
+    <span class="doodle three">✧</span>
+    <span class="doodle four">☆</span>
+
+    <h1>Happy Birthday Max!</h1>
+
+    <p class="subtitle">
+        I made a little something for you
+    </p>
+
+    <button
+        class="open-button"
+        id="openSurprise"
+    >
+        Open Your Surprise
+    </button>
+
+</div>
+
+
+<section
+    class="letter-section"
+    id="letter"
+>
+
+    <h2 class="scrap-title">
+        You've got a letter
+    </h2>
+
+    <p>
+        tap the envelope
+    </p>
+
+    <div
+        class="envelope-wrapper"
+        id="envelope"
+    >
+
+        <div class="envelope">
+
+            <div class="letter-paper"></div>
+
+            <div class="envelope-front"></div>
+
+            <div class="envelope-flap"></div>
+
+        </div>
+
+    </div>
+
+
+    <div
+        class="letter-content"
+        id="letterContent"
+    >
+
+        <h3>
+            Happy Birthday Max!
+        </h3>
+
+        <p>
+I wanted to make you something
+you could open whenever you wanted!
+</p>
+
+        <p>
+I'm so grateful for all of our friendship & relationship,
+all of the random moments,
+and everything we've gotten
+to experience together.
+</p>
+
+        <p>
+I hope this next year brings you
+so many good memories,
+happiness,
+adventures,
+and everything you've been
+looking forward to.
+</p>
+
+        <p>
+I'm really lucky to have met you.
+</p>
+
+    </div>
+
+</section>
+
+
+<div class="scrapbook-divider"></div>
+
+
+<section class="memories-section">
+
+    <span class="doodle one">♡</span>
+    <span class="doodle two">☆</span>
+
+    <h2 class="scrap-title">
+        Our Cutie Memories
+    </h2>
+
+    <p class="memories-subtitle">
+        a few of my favorite moments with you
+    </p>
+
+    <div class="photo-grid">
+
+        
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/1.jpeg"
+            alt="Birthday memory 1"
+        >
+
+        <p class="photo-caption">
+            we cuties
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/2.jpeg"
+            alt="Birthday memory 2"
+        >
+
+        <p class="photo-caption">
+            
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/3.jpeg"
+            alt="Birthday memory 3"
+        >
+
+        <p class="photo-caption">
+            hehe
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/4.jpeg"
+            alt="Birthday memory 4"
+        >
+
+        <p class="photo-caption">
+            
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/5.jpeg"
+            alt="Birthday memory 5"
+        >
+
+        <p class="photo-caption">
+            muah muah
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/6.jpeg"
+            alt="Birthday memory 6"
+        >
+
+        <p class="photo-caption">
+            
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/7.jpeg"
+            alt="Birthday memory 7"
+        >
+
+        <p class="photo-caption">
+            
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/8.jpeg"
+            alt="Birthday memory 8"
+        >
+
+        <p class="photo-caption">
+            rawrrr
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/9.jpeg"
+            alt="Birthday memory 9"
+        >
+
+        <p class="photo-caption">
+            
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/10.jpeg"
+            alt="Birthday memory 10"
+        >
+
+        <p class="photo-caption">
+            
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/11.jpeg"
+            alt="Birthday memory 11"
+        >
+
+        <p class="photo-caption">
+            
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/12.jpeg"
+            alt="Birthday memory 12"
+        >
+
+        <p class="photo-caption">
+            iconic
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/13.jpeg"
+            alt="Birthday memory 13"
+        >
+
+        <p class="photo-caption">
+            
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/14.jpeg"
+            alt="Birthday memory 14"
+        >
+
+        <p class="photo-caption">
+            
+        </p>
+
+    </div>
+    
+    <div class="polaroid reveal-photo">
+
+        <div class="tape"></div>
+
+        <img
+            src="photos/15.jpeg"
+            alt="Birthday memory 15"
+        >
+
+        <p class="photo-caption">
+            forever grateful
+        </p>
+
+    </div>
+    
+
+    </div>
+
+</section>
+
+
+<div class="scrapbook-divider reverse"></div>
+
+
+<section class="video-section">
+
+    <h2 class="scrap-title">
+        A little video for you
+    </h2>
+
+    <p>
+        one more surprise
+    </p>
+
+    <div class="video-container">
+
+        <iframe
+            src="https://www.youtube.com/embed/GCwmiludUMU"
+            title="Birthday video"
+            referrerpolicy="strict-origin-when-cross-origin"
+
+            allow="
+                accelerometer;
+                autoplay;
+                clipboard-write;
+                encrypted-media;
+                gyroscope;
+                picture-in-picture;
+                web-share
+            "
+
+            allowfullscreen>
+        </iframe>
+
+    </div>
+
+</section>
+
+
+<div class="scrapbook-divider"></div>
+
+
+<section class="final-section">
+
+    <h2 class="scrap-title">
+        Happy Birthday Again
+    </h2>
+
+    <div class="final-message">
+
+        <p>
+I hope you have the best birthday ever and love study abroad!
+</p>
+
+        <p>
+You deserve an amazing year ahead.
+</p>
+
+        <p>
+Love youuu
+</p>
+
+    </div>
+
+</section>
+
+
+<script>
+
+document.documentElement
+    .classList
+    .add("js-enabled");
+
+
+function createHearts() {
+
+    for (let i = 0; i < 24; i++) {
+
+        setTimeout(
+            () => {
+
+                const heart =
+                    document.createElement("div");
+
+                heart.className = "heart";
+
+                heart.style.left =
+                    (Math.random() * 100) + "vw";
+
+                heart.style.animationDuration =
+                    (4 + Math.random() * 2) + "s";
+
+                document.body.appendChild(heart);
+
+                setTimeout(
+                    () => {
+                        heart.remove();
+                    },
+                    6500
+                );
+
+            },
+
+            i * 120
+        );
+
+    }
+}
+
+
+document
+    .getElementById("openSurprise")
+    .addEventListener(
+        "click",
+        () => {
+
+            createHearts();
+
+            document
+                .getElementById("letter")
+                .scrollIntoView({
+                    behavior: "smooth"
+                });
+
+        }
+    );
+
+
+const envelope =
+    document.getElementById("envelope");
+
+
+const letterContent =
+    document.getElementById("letterContent");
+
+
+envelope.addEventListener(
+    "click",
+    () => {
+
+        envelope.classList.add("open");
+
+        setTimeout(
+            () => {
+                letterContent.classList.add("show");
+            },
+            700
+        );
+
+    }
+);
+
+
+const photos =
+    document.querySelectorAll(
+        ".reveal-photo"
+    );
+
+
+const observer =
+    new IntersectionObserver(
+
+        entries => {
+
+            entries.forEach(
+                entry => {
+
+                    if (
+                        entry.isIntersecting
+                    ) {
+
+                        entry.target
+                            .classList
+                            .add("visible");
+
+                        observer.unobserve(
+                            entry.target
+                        );
+                    }
+
+                }
+            );
+
+        },
+
+        {
+            threshold: 0.10
+        }
+
+    );
+
+
+photos.forEach(
+    photo => {
+
+        observer.observe(photo);
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
